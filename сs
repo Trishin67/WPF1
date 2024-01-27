@@ -1,0 +1,97 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace WpfApp1
+{
+    public partial class MainWindow : Window
+    {
+        private string currentInput = "0";
+        private string operation = "";
+        private double result = 0;
+
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            string buttonText = button.Content.ToString();
+
+            if (currentInput == "0" || operation == "=")
+            {
+                currentInput = buttonText;
+            }
+            else
+            {
+                currentInput += buttonText;
+            }
+
+            Display.Text = currentInput;
+        }
+
+        private void Operation_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            operation = button.Content.ToString();
+            result = double.Parse(currentInput);
+            currentInput = "0";
+        }
+
+        private void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            currentInput = "0";
+            operation = "";
+            result = 0;
+            Display.Text = currentInput;
+        }
+
+        private void Equals_Click(object sender, RoutedEventArgs e)
+        {
+            double.TryParse(currentInput, out double input);
+
+            switch (operation)
+            {
+                case "+":
+                    result += input;
+                    break;
+                case "-":
+                    result -= input;
+                    break;
+                case "*":
+                    result *= input;
+                    break;
+                case "/":
+                    if (input != 0)
+                    {
+                        result /= input;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cannot divide by zero");
+                    }
+                    break;
+                default:
+                    result = input;
+                    break;
+            }
+
+            operation = "=";
+            currentInput = result.ToString();
+            Display.Text = currentInput;
+        }
+    }
+}
