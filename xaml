@@ -1,0 +1,54 @@
+<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Circular Buttons Calculator" Height="500" Width="320">
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="CircularButtonStyle">
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="Height" Value="80"/>
+            <Setter Property="Background" Value="Orange"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="LayoutRoot" Background="Black">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock x:Name="Display" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" FontSize="36" Foreground="White"/>
+        <Button Grid.Column="0" Grid.Row="1" Style="{StaticResource CircularButtonStyle}" Content="1" Click="Button_Click"/>
+        <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource CircularButtonStyle}" Content="2" Click="Button_Click"/>
+        <Button Grid.Column="2" Grid.Row="1" Style="{StaticResource CircularButtonStyle}" Content="3" Click="Button_Click"/>
+        <Button Grid.Column="3" Grid.Row="1" Style="{StaticResource CircularButtonStyle}" Content="4" Click="Button_Click"/>
+        <Button Grid.Column="0" Grid.Row="2" Style="{StaticResource CircularButtonStyle}" Content="5" Click="Button_Click"/>
+        <Button Grid.Column="1" Grid.Row="2" Style="{StaticResource CircularButtonStyle}" Content="6" Click="Button_Click"/>
+        <Button Grid.Column="2" Grid.Row="2" Style="{StaticResource CircularButtonStyle}" Content="7" Click="Button_Click"/>
+        <Button Grid.Column="3" Grid.Row="2" Style="{StaticResource CircularButtonStyle}" Content="8" Click="Button_Click"/>
+        <Button Grid.Column="0" Grid.Row="3" Style="{StaticResource CircularButtonStyle}" Content="9" Click="Button_Click"/>
+        <Button Grid.Column="1" Grid.Row="3" Style="{StaticResource CircularButtonStyle}" Content="0" Click="Button_Click"/>
+        <Button Grid.Column="2" Grid.Row="3" Style="{StaticResource CircularButtonStyle}" Content="+" Click="Operation_Click"/>
+        <Button Grid.Column="3" Grid.Row="3" Style="{StaticResource CircularButtonStyle}" Content="-" Click="Operation_Click"/>
+        <Button Grid.Column="0" Grid.Row="4" Style="{StaticResource CircularButtonStyle}" Content="*" Click="Operation_Click"/>
+        <Button Grid.Column="1" Grid.Row="4" Style="{StaticResource CircularButtonStyle}" Content="/" Click="Operation_Click"/>
+        <Button Grid.Column="2" Grid.Row="4" Style="{StaticResource CircularButtonStyle}" Content="=" Click="Equals_Click"/>
+        <Button Grid.Column="3" Grid.Row="4" Style="{StaticResource CircularButtonStyle}" Content="CLEAR" Click="Clear_Click"/>
+    </Grid>
+</Window>
